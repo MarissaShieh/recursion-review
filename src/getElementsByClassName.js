@@ -7,16 +7,13 @@
 var getElementsByClassName = function(className, node) {
   node = node || document.body;
   var results = [];
-  
-  var names = node.className.split(' ');
-  if (names.indexOf(className)>=0){
-    results.push(node);
+  if (node.classList && node.classList.contains(className)){
+      results.push(node);
   }
 
-  for (let i = 0; i<node.children.length;i++){
-    var final = getElementsByClassName(className, node.children[i]);
+  for (let i = 0; i<node.childNodes.length;i++){
+    var final = getElementsByClassName(className, node.childNodes[i]);
     results = results.concat(final);
   }
-  console.log("Our results = "+ results);
   return results;
 };
